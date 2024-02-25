@@ -1,0 +1,26 @@
+---
+import LoginForm from '../components/LoginForm.astro';
+import Base from '../layouts/BaseLayout.astro'
+const { cookies, redirect } = Astro;
+
+const accessToken = cookies.get("sb-access-token");
+const refreshToken = cookies.get("sb-refresh-token");
+
+if (accessToken && refreshToken) {
+  return redirect("/dashboard");
+}
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Login</title>
+	</head>
+	<body title="Login Page">
+		<LoginForm/>
+
+	</body>
+</html>

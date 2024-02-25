@@ -1,0 +1,51 @@
+---
+import ThemeToggle from "./ThemeToggle.astro"
+import {Button} from '@/components/ui/button'
+
+---
+
+
+<body class="bg-white h-screen flex items-center justify-center">
+    
+    <div class="bg-white p-8 rounded-lg shadow-md w-96 border border-black ">
+        <h1 class="flex justify-center text-2xl font-bold mb-4 text-black">Admin Registration</h1>
+
+        <form action="/api/auth/register" method="post">
+            <div class="mb-4 flex flex-wrap">
+                <div class="w-full md:w-1/2 pr-2">
+                    <label for="first_name" class="block text-sm font-medium text-gray-600">First Name</label>
+                    <input type="text" id="first_name" name="first_name" class="mt-1 p-2 w-full border border-black rounded-md bg-white text-black">
+                </div>
+                <div class="w-full md:w-1/2 pr-2">
+                    <label for="last_name" class="block text-sm font-medium text-gray-600">Last Name</label>
+                    <input type="text" id="last_name" name="last_name" class="mt-1 p-2 w-full border border-black rounded-md bg-white text-black">
+                </div>
+              </div>
+            
+      
+                <div class="mb-4">
+                    <label for="email" class="block text-sm font-medium text-gray-600">Email Address</label>
+                    <input type="email" id="email" name="email" class="mt-1 p-2 w-full border border-black rounded-md bg-white text-black">
+                </div>
+                
+
+            <div class="mb-4">
+                <label for="password" class="block text-sm font-medium text-gray-600">Password</label>
+                <input type="password" id="password" name="password" class="mt-1 p-2 w-full border border-black rounded-md bg-white text-black">
+            </div>
+
+            <div class="flex flex-col items-center">
+                <Button type="submit" className="mb-4 w-full border border-black bg-black text-white hover:bg-zinc-700 active:bg-zinc-800">
+                    Register
+                </Button>
+                <p class="text-center">
+                    Already have an account? <a href="/signin" class="text-blue-500  hover:text-blue-200 hover:underline">Login now!</a>
+                </p>
+            </div>
+        </form>
+    </div>
+
+    <script>
+  
+    </script>
+    </body>

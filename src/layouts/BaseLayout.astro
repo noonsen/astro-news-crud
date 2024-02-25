@@ -1,0 +1,38 @@
+---
+import Nav from "../components/Navbar.astro";
+import CreateButton from "../components/CreateButton.astro";
+import ThemeToggle from "../components/ThemeToggle.astro";
+import Card from "../components/Card.astro";
+import Cards from "../components/Cards.astro";
+import DataTable from "../components/Datatable.astro"
+
+interface Props {
+	title: string;
+}
+
+
+const { title } = Astro.props;
+---
+
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	
+	<main class="max-w-2xl mx-auto grid grid-rows-1" data-theme="business">
+
+		
+		<Nav/>
+
+
+
+		<slot/>
+	</main>
+</html>
