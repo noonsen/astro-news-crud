@@ -1,0 +1,46 @@
+---
+import CreateButton from "./CreateButton.astro";
+
+
+const props = Astro.props; 
+
+
+---
+
+<aside class="bg-gray-700 p-4 h-screen">
+   <ul class="text-white flex flex-col gap-2">
+     <li class="mb-4">
+       <a href="#" class="flex items-center">
+         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" viewBox="0 0 24 24" {...props}>
+            <path fill="currentColor" d="M13 9V3h8v6zM3 13V3h8v10zm10 8V11h8v10zM3 21v-6h8v6z"/>
+         </svg>
+         Dashboard
+      </a>
+     </li>
+     <li class="flex items-center mb-4">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" viewBox="0 0 256 256" {...props}>
+         <path fill="currentColor" d="M216 48H56a16 16 0 0 0-16 16v120a8 8 0 0 1-16 0V88a8 8 0 0 0-16 0v96.11A24 24 0 0 0 32 208h176a24 24 0 0 0 24-24V64a16 16 0 0 0-16-16m-40 104H96a8 8 0 0 1 0-16h80a8 8 0 0 1 0 16m0-32H96a8 8 0 0 1 0-16h80a8 8 0 0 1 0 16"/>
+      </svg>
+       <a href="#" class="text-white">News</a>
+     </li>
+     <li class="flex items-center mb-4">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" viewBox="0 0 24 24" {...props}>
+         <path fill="currentColor" d="M15 14c-2.67 0-8 1.33-8 4v2h16v-2c0-2.67-5.33-4-8-4m-9-4V7H4v3H1v2h3v3h2v-3h3v-2m6 2a4 4 0 0 0 4-4a4 4 0 0 0-4-4a4 4 0 0 0-4 4a4 4 0 0 0 4 4"/>
+      </svg>
+       <a href="#" class="text-white">Register</a>
+     </li>
+     <li class="flex items-center mb-4">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" viewBox="0 0 256 256" {...props}>
+         <path fill="currentColor" d="m141.66 133.66l-40 40a8 8 0 0 1-11.32-11.32L116.69 136H24a8 8 0 0 1 0-16h92.69L90.34 93.66a8 8 0 0 1 11.32-11.32l40 40a8 8 0 0 1 0 11.32M192 32h-56a8 8 0 0 0 0 16h56v160h-56a8 8 0 0 0 0 16h56a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16"/>
+      </svg>
+      
+       <a href="#" class="text-white">Login</a>
+     </li>
+   </ul>
+   <hr class="border-t border-gray-300 my-4">
+   <CreateButton/>
+ </aside>
+
+ 
+ 
