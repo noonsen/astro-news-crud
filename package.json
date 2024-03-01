@@ -12,6 +12,7 @@
   "dependencies": {
     "@astrojs/check": "^0.4.1",
     "@astrojs/cloudflare": "^9.0.2",
+    "@astrojs/netlify": "^5.1.3",
     "@astrojs/react": "^3.0.10",
     "@astrojs/tailwind": "^5.1.0",
     "@radix-ui/react-navigation-menu": "^1.1.4",
