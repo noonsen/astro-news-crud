@@ -1,24 +1,21 @@
 ---
 import Sidebar from "../components/Sidebar.astro";
-import CreateButton from "../components/CreateButton.astro";
 import ThemeToggle from "../components/ThemeToggle.astro";
-import Card from "../components/Card.astro";
 import Cards from "../components/Cards.astro";
 import DataTable from "../components/Datatable.astro"
 import Nav from "../components/Navigation.astro";
 import ImageData from "/public/arkgroup.png"
 
 
+
 interface Props {
 	title: string;
-	desc: string;
-	image: string;
+	description: string;
 }
 
 
+const { title, description } = Astro.props;
 
-
-const { title, desc, image } = Astro.props;
 ---
 
 
@@ -30,7 +27,7 @@ const { title, desc, image } = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
+		<title></title>
 	</head>
 	<div>
 		<Nav/>
@@ -41,26 +38,17 @@ const { title, desc, image } = Astro.props;
 				cards={[
 					{
 						title: "Unveiling of the new office",
-						desc: "This is a news header called with Astro.props",
-	
-
+						description: "This is a news header called with Astro.props",
 					},
 					{
 						title: "A summary of my work history",
-						desc: "This is a news header called with Astro.props",
+						description: "This is a news header called with Astro.props",
 
 					},
 					{
 						title: "What I do beyond technology",
-						desc: "This is a news header called with Astro.props",
-	
+						description: "This is a news header called with Astro.props",
 					},
-					{
-						title: "What I do beyond technology",
-						desc: "This is a news header called with Astro.props",
-	
-					},
-				
 	
 				]}
 				/>
