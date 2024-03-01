@@ -11,14 +11,9 @@ import ImageData from "/public/arkgroup.png"
 
 interface Props {
 	title: string;
-	desc: string;
-	image: string;
 }
 
-
-
-
-const { title, desc, image } = Astro.props;
+const {title} = Astro.props;
 ---
 
 
@@ -36,35 +31,6 @@ const { title, desc, image } = Astro.props;
 		<Nav/>
 		<div class="flex">
 			<Sidebar/>
-			<main class="p-4 flex-1 bg-gray-200">
-				<Cards 
-				cards={[
-					{
-						title: "Unveiling of the new office",
-						desc: "This is a news header called with Astro.props",
-	
-
-					},
-					{
-						title: "A summary of my work history",
-						desc: "This is a news header called with Astro.props",
-
-					},
-					{
-						title: "What I do beyond technology",
-						desc: "This is a news header called with Astro.props",
-	
-					},
-					{
-						title: "What I do beyond technology",
-						desc: "This is a news header called with Astro.props",
-	
-					},
-				
-	
-				]}
-				/>
-			</main>
 			<slot/>
 		</div>
 	</div>
