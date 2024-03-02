@@ -1,7 +1,5 @@
 ---
 import CreateButton from "@/components/CreateButton.astro";
-
-
 const props = Astro.props; 
 
 
@@ -10,18 +8,12 @@ const props = Astro.props;
 <aside class="bg-gray-700 p-4 h-screen box-shadow shadow-sm border-r-2 border-zinc-800 font-semibold">
    <ul class="text-white flex flex-col">
      <li class="flex items-center mb-4 px-4 py-2 hover:bg-gray-600 hover:rounded-lg hover:scale-110 transition-transform">
-       <a href="/dashboard" class="flex items-center ">
+       <a href="/" class="flex items-center ">
          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" viewBox="0 0 24 24" {...props}>
             <path fill="currentColor" d="M13 9V3h8v6zM3 13V3h8v10zm10 8V11h8v10zM3 21v-6h8v6z"/>
          </svg>
          Dashboard
       </a>
-     </li>
-     <li class="flex items-center mb-4 px-4 py-2 hover:bg-gray-600 hover:rounded-lg hover:scale-110 transition-transform">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" viewBox="0 0 256 256" {...props}>
-         <path fill="currentColor" d="M216 48H56a16 16 0 0 0-16 16v120a8 8 0 0 1-16 0V88a8 8 0 0 0-16 0v96.11A24 24 0 0 0 32 208h176a24 24 0 0 0 24-24V64a16 16 0 0 0-16-16m-40 104H96a8 8 0 0 1 0-16h80a8 8 0 0 1 0 16m0-32H96a8 8 0 0 1 0-16h80a8 8 0 0 1 0 16"/>
-      </svg>
-       <a href="#" class="text-white">News</a>
      </li>
      <li class="flex items-center mb-4 px-4 py-2 hover:bg-gray-600 hover:rounded-lg hover:scale-110 transition-transform">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" viewBox="0 0 24 24" {...props}>
