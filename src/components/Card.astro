@@ -1,39 +1,39 @@
 ---
-import { Edit } from "lucide-react";
-import CreateButton from "./CreateButton.astro";
-import DeleteButton from "./DeleteButton.astro";
-
-import EditButton from "./EditButton.astro";
+import DeleteButton from "@/components/DeleteButton.astro";
+import EditButton from "@/components/EditButton.astro";
 export type Props = {
     title: string;
     description: string;
+    date_published: string;
 }
 
-const {title, description} = Astro.props;
+const {title, description, date_published} = Astro.props;
 
 
 ---
 
 
 <div class="flex flex-col gap-3 border bg-white">
-  
   <div class="w-80 p-5 h-60 shadow-md relative rounded-md border border-black">
-    
     <div class="py-3 px-1">
       <p class="text-lg font-bold font-sans">{title}</p>
     </div>
-      <div class="text-sm py-2 font-mono">
-        {description}
-      </div>
-      <div class="flex gap-3">
-        <EditButton/>
-        <DeleteButton/>
-      </div>  
+    <div class="text-sm py-2 font-mono overflow-hidden overflow-ellipsis">
+      {description}
+    </div>
+    <div class="font-semibold">
+      {date_published}
+      <div class="flex justify-end mt-2">
+        <div class="flex gap-3">
+          <EditButton/>
+          <DeleteButton/>
+        </div>
+    </div>
+
+    </div>
   </div>
 </div>
 
-
-    
 
       
       

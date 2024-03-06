@@ -1,18 +1,12 @@
 ---
-import Sidebar from "../components/Sidebar.astro";
-import Cards from "../components/Cards.astro";
-import Nav from "../components/Navigation.astro";
+import Sidebar from "@/components/Sidebar.astro";
+import Cards from "@/components/Cards.astro";
+import Nav from "@/components/Navigation.astro";
 
-
-
-interface Props {
-	title: string;
-	description: string;
-}
-
-
-const { title, description } = Astro.props;
-
+import { supabase } from '@/supabase'
+const { data: news_articles, error } = await supabase
+    .from('news_articles')
+    .select('*');
 ---
 
 
@@ -31,25 +25,18 @@ const { title, description } = Astro.props;
 		<div class="flex">
 			<Sidebar/>
 			<main class="p-4 flex-1 bg-gray-200">
-				<Cards 
-				cards={[
-					{
-						title: "Unveiling of the new office",
-						description: "This is a news header called with Astro.props",
-					},
-					{
-						title: "A summary of my work history",
-						description: "This is a news header called with Astro.props",
-
-					},
-					{
-						title: "What I do beyond technology",
-						description: "This is a news header called with Astro.props",
-					},
-	
-				]}
-				/>
+				{error && <div>Error: {error.message}</div>}
+				{news_articles && (
+					<Cards cards={news_articles.map(article => ({
+						title: article.title,
+						description: article.description,
+						date_published: article.date_published
+					}))} />
+				)}
+			
+			
 			</main>
+			
 			<slot/>
 		</div>
 	</div>

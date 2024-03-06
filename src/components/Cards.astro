@@ -1,14 +1,31 @@
 ---
+
 import Card from "./Card.astro";
+import { createClient } from "@supabase/supabase-js";
 import type {Props as CardProp} from "./Card.astro";
+
+import {supabase} from "@/supabase";
+
+
+
+
 type Props = {
     cards: CardProp[];
 
 };
 
 const {cards} = Astro.props;
+
+
+    
+
 ---
 
 <div class="cards container mx-auto flex flex-row flex-wrap justify-center items-center gap-4 m-20">
     {cards.map((card) => <Card {...card}/>)}
 </div>
+
+<script>
+
+
+</script>
