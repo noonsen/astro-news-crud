@@ -7,7 +7,7 @@ const NewsForm = () => {
     const [description, setDescription] = useState('');
     const [datePublished, setDatePublished] = useState('');
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event: { preventDefault: () => void; }) => {
         event.preventDefault();
 
         try {
@@ -25,7 +25,7 @@ const NewsForm = () => {
             setDescription('');
             setDatePublished('');
 
-            console.log('News added successfully!');
+            alert('News added successfully!');
         } catch (error) {
             console.error('Error adding news:', error.message);
             console.log('Failed to add news. Please try again.');
