@@ -8,7 +8,7 @@ type UpdateModalProps = {
 const UpdateModal: React.FC<UpdateModalProps> = ({ id }) => {
     const [showModal, setShowModal] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [selectedItemId, setSelectedItemId] = useState('');
+    const [selectedItemId, setSelectedItemId] = useState<number | null>();
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [body, setBody] = useState('');
@@ -112,7 +112,7 @@ const UpdateModal: React.FC<UpdateModalProps> = ({ id }) => {
 
                             <div className="flex flex-col">
                               <label htmlFor="body" className="font-bold">Body</label>
-                              <textarea id="newsBody" name="newsBody" rows="4" required className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+                              <textarea id="newsBody" name="newsBody" rows={4} required className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
                               value={body} onChange={(e) => setBody(e.target.value)}>
                               </textarea>
                             </div>

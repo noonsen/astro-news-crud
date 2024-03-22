@@ -24,7 +24,9 @@ const CreateNewsForm = () => {
             if (imageFile) {
                 const { data: imageData, error: imageError } = await supabase.storage
                     .from('news_images')
-                    .upload(`${imageFile.name}`, imageFile, { cacheControl: '3600' });
+                    .upload(`${imageFile.name}`, imageFile, { cacheControl: '3600' })
+                    
+                    
 
                 if (imageError) {
                     throw imageError;
@@ -37,7 +39,7 @@ const CreateNewsForm = () => {
             }
 
             // Insert news article into the database
-            const { data, error } = await supabase
+            const {  error } = await supabase
                 .from('news_articles')
                 .insert([{ title, description, body, date_published: datePublished, images: imageURL }]);
 
@@ -79,7 +81,7 @@ const CreateNewsForm = () => {
                         </div>
                         <div className="mb-4">
                             <label htmlFor="newsBody" className="block text-gray-700 font-bold">News Body:</label>
-                            <textarea id="newsBody" name="newsBody" rows="4" required className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+                            <textarea id="newsBody" name="newsBody" rows={4} required className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
                                 value={body} onChange={(e) => setBody(e.target.value)}></textarea>
                         </div>
                         <div className="mb-4">

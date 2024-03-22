@@ -1,6 +1,6 @@
 ---
 import LoginForm from '@/components/LoginForm.astro';
-const { cookies, redirect } = Astro;
+const { cookies } = Astro;
 
 const accessToken = cookies.get("sb-access-token");
 const refreshToken = cookies.get("sb-refresh-token");
