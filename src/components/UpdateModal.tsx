@@ -96,8 +96,8 @@ const UpdateModal: React.FC<UpdateModalProps> = ({ id }) => {
               </button>
             {showModal && (
               
-                <div className="fixed top-0 left-0 z-50 w-full h-screenflex justify-center items-center ">
-                    <div className="bg-white p-5 rounded-lg shadow-lg border border-black ">
+                <div className="fixed top-0 left-0 z-50 h-screen w-full flex justify-center items-center backdrop-filter backdrop-blur-sm">
+                    <div className="bg-white p-5 w-80 active:bg-blur rounded-lg shadow-lg border border-black ">
                         <h2 className="text-lg font-bold mb-4">Update News Article</h2>
                         <div>ID: {newsId}</div> {/* Display the ID */}
                         <form onSubmit={handleSubmit} className="space-y-4">
@@ -122,7 +122,7 @@ const UpdateModal: React.FC<UpdateModalProps> = ({ id }) => {
                                 <input type="date" id="datePublished" value={datePublished} onChange={(e) => setDatePublished(e.target.value)} className="border border-gray-300 rounded-md p-2" />
                             </div>
                             <div className="flex justify-end">
-                                <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+                                <button type="submit" className="bg-blue-500 text-white px-4 py-1 rounded-md hover:bg-blue-600">
                                   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
                                     <path fill="#070606" d="M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h8.925l-2 2H5v14h14v-6.95l2-2V19q0 .825-.587 1.413T19 21zm4-6v-4.25l9.175-9.175q.3-.3.675-.45t.75-.15q.4 0 .763.15t.662.45L22.425 3q.275.3.425.663T23 4.4q0 .375-.137.738t-.438.662L13.25 15zM21.025 4.4l-1.4-1.4zM11 13h1.4l5.8-5.8l-.7-.7l-.725-.7L11 11.575zm6.5-6.5l-.725-.7zl.7.7z"/>
                                   </svg>
