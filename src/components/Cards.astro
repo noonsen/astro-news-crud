@@ -2,7 +2,7 @@
 
 import Card from "@/components/Card.astro";
 import type {Props as CardProp} from "@/components/Card.astro";
-import {supabase} from '@/supabase';
+
 
 type Props = {
     cards: CardProp[];
@@ -11,10 +11,6 @@ type Props = {
 
 const {cards} = Astro.props;    
 
-const { data, error } = await supabase
-  .from('news_articles')
-  .select('*')
-  .order('date_published', { ascending: true });
 
 ---
 
