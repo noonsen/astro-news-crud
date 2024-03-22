@@ -24,13 +24,15 @@ const { data: news_articles, error } = await supabase
 		<Nav/>
 		<div class="flex">
 			<Sidebar/>
-			<main class="p-4 flex-1 bg-gray-200">
+			<main class="p-4 flex-1 ">
 				{error && <div>Error: {error.message}</div>}
 				{news_articles && (
 					<Cards cards={news_articles.map(article => ({
+						id: article.id,
 						title: article.title,
 						description: article.description,
-						date_published: article.date_published
+						date_published: article.date_published,
+						image: article.image
 					}))} />
 				)}
 			

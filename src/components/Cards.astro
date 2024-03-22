@@ -1,31 +1,24 @@
 ---
 
-import Card from "./Card.astro";
-import { createClient } from "@supabase/supabase-js";
-import type {Props as CardProp} from "./Card.astro";
-
-import {supabase} from "@/supabase";
-
-
-
+import Card from "@/components/Card.astro";
+import type {Props as CardProp} from "@/components/Card.astro";
+import {supabase} from '@/supabase';
 
 type Props = {
     cards: CardProp[];
 
 };
 
-const {cards} = Astro.props;
+const {cards} = Astro.props;    
 
-
-    
+const { data, error } = await supabase
+  .from('news_articles')
+  .select('*')
+  .order('date_published', { ascending: true });
 
 ---
 
-<div class="cards container mx-auto flex flex-row flex-wrap justify-center items-center gap-4 m-20">
-    {cards.map((card) => <Card {...card}/>)}
+<div class="container mx-auto p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+    {cards.sort((a, b) => new Date(a.date_published).getTime() - new Date(b.date_published).getTime()).map((card) => <Card {...card} />)
+    }
 </div>
-
-<script>
-
-
-</script>

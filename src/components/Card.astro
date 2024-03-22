@@ -1,48 +1,53 @@
 ---
-import DeleteButton from "@/components/DeleteButton.astro";
-import EditButton from "@/components/EditButton.astro";
+import {supabase} from "@/supabase";
+import UpdateButton from "@/components/UpdateButton";
+import DeleteButton from "@/components/DeleteButton";
+import UpdateModal from "@/components/UpdateModal";
+
 export type Props = {
+    id: number;
     title: string;
     description: string;
-    date_published: string;
+    date_published: Date;
+    image: string;
 }
 
-const {title, description, date_published} = Astro.props;
+const {id, title, description, date_published, image} = Astro.props;
+
 
 
 ---
 
 
-<div class="flex flex-col gap-3 border bg-white">
-  <div class="w-80 p-5 h-60 shadow-md relative rounded-md border border-black">
-    <div class="py-3 px-1">
-      <p class="text-lg font-bold font-sans">{title}</p>
-    </div>
-    <div class="text-sm py-2 font-mono overflow-hidden overflow-ellipsis">
-      {description}
-    </div>
-    <div class="font-semibold">
-      {date_published}
-      <div class="flex justify-end mt-2">
-        <div class="flex gap-3">
-          <EditButton/>
-          <DeleteButton/>
+<div class="container mx-auto p-6 transform hover:scale-105 transition-transform duration-300 ease-in-out">
+  <div class="flex items-stretch -mx-4 ">
+    <div class="flex-1 p-4">
+      <div class="block bg-white overflow-hidden border-2 border-zinc-300 size-fit rounded-lg">
+        <div class="p-4">
+          <h2 class="mt-2 mb-2 font-bold text-2xl font-Heading">
+            <img src={image}>
+            {title} 
+          </h2>
+          <div class="mb-4 flex flex-wrap">
+          </div>
+          <p class="text-md text-justify">{description}</p>
         </div>
-    </div>
+        <div class="p-4 flex flex-wrap items-center">
+          <p class="tracking-wide text-xs font-medium me-2 px-2.5 py-0.5 mr-2 mb-2 rounded-lg bg-yellow-300 text-yellow-800">{date_published}</p>
+        </div>
+        <div class="flex gap-2 justify-end p-5 ">
+          
+          <UpdateModal id={id} client:load/>
+          <DeleteButton id={id} client:load/>
 
+
+
+        </div>
+        
+      </div>
     </div>
   </div>
 </div>
-
-
-      
-      
-      
-      
-    
-
-    </div>
-  </div>
 
 
 

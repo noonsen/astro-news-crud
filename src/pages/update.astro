@@ -1,0 +1,27 @@
+---
+import NewsLayout from '@/layouts/NewsLayout.astro';
+import UpdateNews from '@/components/UpdateModal';
+export type Props = {
+    id: number;
+    title: string;
+    description: string;
+    date_published: Date;
+}
+
+const {id, title, description, date_published} = Astro.props;
+---
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<NewsLayout title='News Board'>
+		<UpdateNews id={id} client:load/>
+		
+
+
+    </NewsLayout>
+</html>
