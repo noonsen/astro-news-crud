@@ -33,7 +33,7 @@ const UploadImage = () => {
 
             if (data) {
                 setUploadSuccess(true);
-                setImageUrl(data.Key); // Save the image URL
+                setImageUrl(data.path); // Save the image URL
             }
         } catch (error: any) {
             console.error('Error uploading image:', error.message);
