@@ -32,7 +32,8 @@ const { data: news_articles, error } = await supabase
 						title: article.title,
 						description: article.description,
 						date_published: article.date_published,
-						images: article.images
+						body: article.body,
+						images: article.images,
 					}))} />
 				)}
 			
