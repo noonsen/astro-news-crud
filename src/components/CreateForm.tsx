@@ -7,12 +7,36 @@ const CreateNewsForm = () => {
     const [datePublished, setDatePublished] = useState('');
     const [body, setBody] = useState('');
     const [imageFile, setImageFile] = useState<File | null>(null);
+    const expiryTime = 5 * 365 * 24 * 60 * 60;
 
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files && event.target.files[0]) {
             setImageFile(event.target.files[0]);
         }
     };
+
+    async function generateSignedUrl(fileName: string): Promise<string> {
+        try {
+            const { data, error } = await supabase.storage
+                .from('news_images')
+                .createSignedUrl(fileName, expiryTime); // 5-yr expiry time (in seconds)
+    
+            if (error) {
+                throw error;
+            }
+    
+            if (data) {
+                return data.signedUrl;
+            } else {
+                throw new Error('Failed to generate signed URL');
+            }
+        } catch (error) {
+            console.error('Error generating signed URL:', error);
+            // You can throw the error or return a default value here
+            throw error;
+        }
+    }
+    
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
@@ -24,9 +48,7 @@ const CreateNewsForm = () => {
             if (imageFile) {
                 const { data: imageData, error: imageError } = await supabase.storage
                     .from('news_images')
-                    .upload(`${imageFile.name}`, imageFile, { cacheControl: '3600' })
-                    
-                    
+                    .upload(`${imageFile.name}`, imageFile, { cacheControl: '3600' });
 
                 if (imageError) {
                     throw imageError;
@@ -34,12 +56,13 @@ const CreateNewsForm = () => {
 
                 if (imageData) {
                     // Construct the URL using the path
-                    imageURL = `https://news_images/${imageData.path}`;
+                    const signedUrl = await generateSignedUrl(imageData.path);
+                    imageURL = signedUrl;
                 }
             }
 
-            // Insert news article into the database
-            const {  error } = await supabase
+            // Insert news article into the database with signed URLs
+            const { error } = await supabase
                 .from('news_articles')
                 .insert([{ title, description, body, date_published: datePublished, images: imageURL }]);
 
@@ -57,7 +80,7 @@ const CreateNewsForm = () => {
             alert('News article created successfully!');
         } catch (error) {
             console.error('Error creating news article:', error);
-            console.error('Failed to create news article. Please try again.' , error);
+            console.error('Failed to create news article. Please try again.', error);
         }
     };
 
