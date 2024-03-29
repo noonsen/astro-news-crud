@@ -14,7 +14,7 @@ const {cards} = Astro.props;
 
 ---
 
-<div class="container mx-auto p-6 z-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+<div class="container mx-auto gap-6 p-6 z-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 ">
     {cards.sort((a, b) => new Date(a.date_published).getTime() - new Date(b.date_published).getTime()).map((card) => <Card {...card} />)
     }
 </div>
