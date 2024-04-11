@@ -1,16 +1,15 @@
 ---
-
+// Import the Card component and its props type
 import Card from "@/components/Card.astro";
-import type {Props as CardProp} from "@/components/Card.astro";
+import type { Props as CardProp } from "@/components/Card.astro";
 
-
+// Define the props type for the Cards component
 type Props = {
-    cards: CardProp[];
-
+    cards: CardProp[]; // Array of card objects, each containing data for a news article
 };
 
-const {cards} = Astro.props;    
-
+// Destructure the cards prop from Astro.props
+const { cards } = Astro.props;
 
 ---
 

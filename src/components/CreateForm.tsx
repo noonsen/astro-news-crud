@@ -2,25 +2,27 @@ import React, { useState } from 'react';
 import { supabase } from '@/supabase';
 
 const CreateNewsForm = () => {
+    // State variables to store form data
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [datePublished, setDatePublished] = useState('');
     const [body, setBody] = useState('');
     const [imageFile, setImageFile] = useState<File | null>(null);
-    const expiryTime = 5 * 365 * 24 * 60 * 60;
+    const expiryTime = 5 * 365 * 24 * 60 * 60; // 5 years in seconds
 
+    // Handle image file selection
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files && event.target.files[0]) {
             setImageFile(event.target.files[0]);
         }
-    };
+    }; 
 
+    // Generate signed URL for the image upload
     async function generateSignedUrl(fileName: string): Promise<string> {
         try {
             const { data, error } = await supabase.storage
                 .from('news_images')
                 .createSignedUrl(fileName, expiryTime); // 5-yr expiry time (in seconds)
-    
             if (error) {
                 throw error;
             }
@@ -37,7 +39,7 @@ const CreateNewsForm = () => {
         }
     }
     
-
+    // Handle form submission
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
 
@@ -70,7 +72,7 @@ const CreateNewsForm = () => {
                 throw error;
             }
 
-            // Reset form fields
+            // Reset form fields on user submit
             setTitle('');
             setDescription('');
             setBody('');
@@ -83,6 +85,7 @@ const CreateNewsForm = () => {
             console.error('Failed to create news article. Please try again.', error);
         }
     };
+
 
     return (
         <div className="container mx-auto p-4 m-10 bg-gray-100 border border-black rounded">

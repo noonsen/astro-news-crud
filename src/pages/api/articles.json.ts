@@ -1,12 +1,15 @@
 import { supabase } from "@/supabase";
 import type { APIRoute } from "astro";
 
-export const GET: APIRoute = async ({  }) => {
+// Define the GET route handler for fetching news articles data
+export const GET: APIRoute = async ({ }) => {
     try {
+        // Fetch news articles data from Supabase
         const { data, error } = await supabase
             .from('news_articles')
             .select('*');
 
+        // Handle error if any
         if (error) {
             throw error;
         }
@@ -30,6 +33,7 @@ export const GET: APIRoute = async ({  }) => {
             },
         });
     } catch (error) {
+        // Return internal server error if any error occurs
         return new Response(JSON.stringify({ error: "Internal server error" }), {
             status: 500,
             headers: {

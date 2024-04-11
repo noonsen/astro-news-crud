@@ -1,23 +1,26 @@
-import {supabase} from '@/supabase';
+import { supabase } from '@/supabase';
 
-
+// Props for the DeleteButton component
 type DeleteButtonProps = {
-    id: number;
+    id: number; // ID of the news article to be deleted
 };
 
+// Functional component for the DeleteButton
 const DeleteButton: React.FC<DeleteButtonProps> = ({ id }) => {
+    // Function to handle the deletion of a news article
     const handleFetchData = async () => {
         try {
-            // Fetch data from Supabase
+            // Fetch data from Supabase and delete the news article with the specified ID
             const { data, error } = await supabase
-            .from('news_articles')
-            .delete()
-            .eq('id', id)
-            .single();
+                .from('news_articles')
+                .delete()
+                .eq('id', id)
+                .single();
             if (error) {
                 throw error;
             }
 
+            // If data is null, the deletion was successful
             if (data) {
                 console.log('Data errors');
             } else {
@@ -29,6 +32,7 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({ id }) => {
         }
     };
 
+    // Render the delete button with an icon
     return (
         <button onClick={() => { handleFetchData(); }} aria-label="UpdateButton" className="bg-red-400 rounded-lg hover:transition-transform hover:scale-110 active:translate-y-1 border ">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
