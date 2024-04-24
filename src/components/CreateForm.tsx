@@ -88,10 +88,14 @@ const CreateNewsForm = () => {
 
 
     return (
-        <div className="container mx-auto p-4 m-10 bg-gray-100 border border-black rounded">
+        <div className="container mx-auto p-20 m-10 bg-gray-100 border border-black rounded drop-shadow-lg">
+            <div className="flex">
+                <h2 className="text-3xl font-bold mb-2">CREATE NEWS ARTICLE</h2>
+            </div>
+            
             <div className="flex flex-wrap">
                 <div className="w-full md:w-1/2 p-10">
-                    <h2 className="text-2xl font-bold mb-4">Create News Article</h2>
+                    
                     <form onSubmit={handleSubmit} className="max-w-lg">
                         <div className="mb-4">
                             <label htmlFor="newsTitle" className="block text-gray-700 font-bold">News Title:</label>

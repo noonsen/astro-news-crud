@@ -1,4 +1,11 @@
-<button class="" aria-label="Theme Toggler" data-theme-toggle >
+---
+import { toggleTheme } from "./toggler/themeToggle";
+
+ // Import the toggleTheme function
+---
+
+
+<button class="" aria-label="Theme Toggler" data-theme-toggle on-click={toggleTheme}>
   <svg width="25px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
       <path
         class="sun"

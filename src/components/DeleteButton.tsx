@@ -1,4 +1,5 @@
 import { supabase } from '@/supabase';
+import React, { useState } from 'react';
 
 // Props for the DeleteButton component
 type DeleteButtonProps = {
@@ -7,6 +8,7 @@ type DeleteButtonProps = {
 
 // Functional component for the DeleteButton
 const DeleteButton: React.FC<DeleteButtonProps> = ({ id }) => {
+    const [showDialog, setShowDialog] = useState(false);
     // Function to handle the deletion of a news article
     const handleFetchData = async () => {
         try {
@@ -34,12 +36,40 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({ id }) => {
 
     // Render the delete button with an icon
     return (
-        <button onClick={() => { handleFetchData(); }} aria-label="UpdateButton" className="bg-red-400 rounded-lg hover:transition-transform hover:scale-110 active:translate-y-1 border ">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
-                <path fill="#1D1C1C" d="M7 21q-.825 0-1.412-.587T5 19V6H4V4h5V3h6v1h5v2h-1v13q0 .825-.587 1.413T17 21zM17 6H7v13h10zM9 17h2V8H9zm4 0h2V8h-2zM7 6v13z"/>
+        <>
+            <button onClick={() => setShowDialog(true)} aria-label="DeleteButton" 
+            className="inline-flex items-center px-4 py-2 border border-red-600 bg-white hover:bg-red-400 text-black text-sm font-medium rounded-md">
+            <svg
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                fill="none"
+                className="h-5 w-5 mr-2"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                strokeWidth="2"
+                strokeLinejoin="round"
+                strokeLinecap="round"
+                ></path>
             </svg>
-        </button>
+
+            Delete
+        
+            </button>
+            {/* Delete Dialog */}
+            {showDialog && (
+                <div className="fixed z-50 inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 backdrop-filter backdrop-blur">
+                    <div className="bg-white p-8 rounded-lg shadow-lg">
+                        <p>Are you sure you want to delete this article?</p>
+                        <div className="mt-4 flex justify-end">
+                            <button onClick={() => setShowDialog(false)} className="p-1 mr-4 text-gray-700 border border-black bg-white rounded-md ">Cancel</button>
+                            <button onClick={handleFetchData} className="p-1 text-red-600 border border-red-500 rounded-md hover:bg-red-400 hover:text-black">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+        </>
     );
 };
-
 export default DeleteButton;

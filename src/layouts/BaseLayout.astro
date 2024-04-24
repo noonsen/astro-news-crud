@@ -21,10 +21,14 @@ const { data: news_articles, error } = await supabase
 		<title></title>
 	</head>
 	<div>
+		
 		<Nav/>
+		
 		<div class="flex">
 			<Sidebar/>
-			<main class="p-4 flex-1 ">
+
+			
+			<main class="p-4 flex-1">
 				{error && <div>Error: {error.message}</div>}
 				{news_articles && (
 					<Cards cards={news_articles.map(article => ({
@@ -36,8 +40,7 @@ const { data: news_articles, error } = await supabase
 						images: article.images,
 					}))} />
 				)}
-			
-			
+		
 			</main>
 			
 			<slot/>
