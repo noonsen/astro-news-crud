@@ -15,7 +15,7 @@ export const GET: APIRoute = async ({ }) => {
         }
 
         // Map fetched data to card objects
-        const cards = data.map(article => ({
+        const news = data.map(article => ({
             id: article.id,
             title: article.title,
             description: article.description,
@@ -26,10 +26,14 @@ export const GET: APIRoute = async ({ }) => {
         }));
 
         // Return the data with a 'cards' property
-        return new Response(JSON.stringify({ cards }), {
+        return new Response(JSON.stringify({ news }), {
             status: 200,
             headers: {
                 'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+                'Access-Control-Allow-Headers': 'Content-Type',
+          
             },
         });
     } catch (error) {
@@ -38,6 +42,10 @@ export const GET: APIRoute = async ({ }) => {
             status: 500,
             headers: {
                 'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+                'Access-Control-Allow-Headers': 'Content-Type',
+          
             },
         });
     }
