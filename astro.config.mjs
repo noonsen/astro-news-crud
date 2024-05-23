@@ -12,6 +12,15 @@ export default defineConfig({
     site: 'https://a2k-nms.netlify.app'
   }), tunnel()],
   output: 'server',
+  server: {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization, set-cookie',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+      'Access-Control-Allow-Credentials': 'true',
+
+    }
+  },
   adapter: netlify(),
   vite: {
     build: {
