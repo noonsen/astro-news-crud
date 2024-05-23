@@ -12,5 +12,14 @@ export default defineConfig({
     site: 'https://a2k-nms.netlify.app'
   }), tunnel()],
   output: 'server',
-  adapter: netlify()
+  adapter: netlify(),
+  vite: {
+    build: {
+       rollupOptions: {
+          output: {
+             entryFileNames: '[name]-[hash].js',
+          },
+       },
+    },
+ },
 });
