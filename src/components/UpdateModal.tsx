@@ -34,6 +34,7 @@ const UpdateModal: React.FC<UpdateModalProps> = ({ id }) => {
             }
 
             if (data) {
+                console.log('Fetched data:', data.id);
                 setNewsId(data.id); // Set the fetched ID
                 setTitle(data.title);
                 setDescription(data.description);
@@ -79,6 +80,7 @@ const UpdateModal: React.FC<UpdateModalProps> = ({ id }) => {
                 date_published: datePublished
             })
             .eq('id', id);
+            console.log(id)
 
         if (error) {
             throw error;

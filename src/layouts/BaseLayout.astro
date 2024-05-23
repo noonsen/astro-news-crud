@@ -1,50 +1,46 @@
 ---
 import Sidebar from "@/components/Sidebar.astro";
-import Cards from "@/components/Cards.astro";
 import Nav from "@/components/Navigation.astro";
+import TableList from "@/components/TableList.astro";
 
-import { supabase } from '@/supabase'
+import { supabase } from '@/supabase';
+
 const { data: news_articles, error } = await supabase
     .from('news_articles')
     .select('*');
----
 
+console.log('Fetched news articles:', news_articles);
+---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title></title>
-	</head>
-	<div>
-		
-		<Nav/>
-		
-		<div class="flex">
-			<Sidebar/>
-
-			
-			<main class="p-4 flex-1">
-				{error && <div>Error: {error.message}</div>}
-				{news_articles && (
-					<Cards cards={news_articles.map(article => ({
-						id: article.id,
-						title: article.title,
-						description: article.description,
-						date_published: article.date_published,
-						body: article.body,
-						images: article.images,
-					}))} />
-				)}
-		
-			</main>
-			
-			<slot/>
-		</div>
-	</div>
-
+<head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title></title>
+</head>
+<body>
+    <div>
+        <Nav/>
+        <div class="flex">
+            <Sidebar/>
+            <main class="p-4 flex-1">
+                {error && <div>Error: {error.message}</div>}
+                {news_articles && (
+                    <TableList tables={news_articles.map(article => ({
+                        id: article.id,
+                        title: article.title,
+                        description: article.description,
+                        date_published: article.date_published,
+                        body: article.body,
+                        images: article.images,
+                    }))} />
+                )}
+            </main>
+        </div>
+    </div>
+</body>
 </html>

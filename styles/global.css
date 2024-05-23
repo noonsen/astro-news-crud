@@ -1,7 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
+
+/* global.css */
+body {
+  transition: background-color 0.5s, color 0.5s;
+}
+
+[data-theme='light'] {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+}
+
+[data-theme='dark'] {
+  --bg-color: #1f2937; /* Tailwind dark gray */
+  --text-color: #ffffff;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

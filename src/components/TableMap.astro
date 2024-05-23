@@ -1,0 +1,19 @@
+---
+// Import the Card component and its props type
+import TableList from "@/components/TableList.astro";
+import type { TableProps  as TableProp } from "@/components/TableList.astro"
+
+// Define the props type for the Cards component
+type Props = {
+    tables: TableProp[]; // Array of card objects, each containing data for a news article
+};
+
+// Destructure the cards prop from Astro.props
+const { tables } = Astro.props;
+
+---
+
+<div class="container mx-auto gap-6 p-6 z-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 ">
+    {tables.sort((a, b) => new Date(a.date_published).getTime() - new Date(b.date_published).getTime()).map((tables) => <TableList {...tables} />)
+    }
+</div>
