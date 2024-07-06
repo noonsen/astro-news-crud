@@ -13,6 +13,7 @@ const UpdateModal: React.FC<UpdateModalProps> = ({ id }) => {
     const [description, setDescription] = useState('');
     const [body, setBody] = useState('');
     const [datePublished, setDatePublished] = useState('');
+    const [image, setImage] = useState<string | null>(null);
     const [newsId, setNewsId] = useState<number | null>(null); // State to hold the fetched ID
 
     useEffect(() => {
@@ -25,7 +26,7 @@ const UpdateModal: React.FC<UpdateModalProps> = ({ id }) => {
         try {
             const { data, error } = await supabase
                 .from('news_articles')
-                .select('id, title, description, body, date_published')
+                .select('id, title, description, body, date_published, images')
                 .eq('id', id)
                 .single();
 
@@ -124,13 +125,13 @@ const UpdateModal: React.FC<UpdateModalProps> = ({ id }) => {
                                 <input type="date" id="datePublished" value={datePublished} onChange={(e) => setDatePublished(e.target.value)} className="border border-gray-300 rounded-md p-2" />
                             </div>
                             <div className="flex justify-end">
-                                <button type="submit" className="bg-blue-500 text-white px-4 py-1 rounded-md hover:bg-blue-600">
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+                                <button type="submit" className="bg-white border border-blue-500 hover:bg-blue-300 relative inline-flex items-center justify-center gap-2 text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50  h-9 rounded-md px-3 group">
+                                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2" viewBox="0 0 24 24">
                                     <path fill="#070606" d="M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h8.925l-2 2H5v14h14v-6.95l2-2V19q0 .825-.587 1.413T19 21zm4-6v-4.25l9.175-9.175q.3-.3.675-.45t.75-.15q.4 0 .763.15t.662.45L22.425 3q.275.3.425.663T23 4.4q0 .375-.137.738t-.438.662L13.25 15zM21.025 4.4l-1.4-1.4zM11 13h1.4l5.8-5.8l-.7-.7l-.725-.7L11 11.575zm6.5-6.5l-.725-.7zl.7.7z"/>
                                   </svg>
                                     Update
                                   </button>
-                                <button type="button" onClick={handleCloseModal} className="bg-red-400 text-gray-700 px-4 py-2 rounded-md ml-2 hover:bg-red-500">Cancel</button>
+                                <button type="button" onClick={handleCloseModal} className="bg-red-400 text-gray-700 px-4 py-2 rounded-md ml-2 hover:bg-red-500 font-bold">Close</button>
                             </div>
                         </form>
                     </div>

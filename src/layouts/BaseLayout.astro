@@ -2,6 +2,7 @@
 import Sidebar from "@/components/Sidebar.astro";
 import Nav from "@/components/Navigation.astro";
 import TableList from "@/components/TableList.astro";
+import SearchBar from "@/components/SearchBar";
 
 import { supabase } from '@/supabase';
 
@@ -22,12 +23,15 @@ console.log('Fetched news articles:', news_articles);
     <meta name="generator" content={Astro.generator} />
     <title></title>
 </head>
+
 <body>
     <div>
         <Nav/>
         <div class="flex">
             <Sidebar/>
+           
             <main class="p-4 flex-1">
+                <SearchBar/>
                 {error && <div>Error: {error.message}</div>}
                 {news_articles && (
                     <TableList tables={news_articles.map(article => ({
@@ -43,4 +47,5 @@ console.log('Fetched news articles:', news_articles);
         </div>
     </div>
 </body>
+
 </html>
