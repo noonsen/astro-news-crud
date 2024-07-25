@@ -31,7 +31,6 @@ console.log('Fetched news articles:', news_articles);
             <Sidebar/>
            
             <main class="p-4 flex-1">
-                <SearchBar/>
                 {error && <div>Error: {error.message}</div>}
                 {news_articles && (
                     <TableList tables={news_articles.map(article => ({

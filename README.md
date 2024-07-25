@@ -1,47 +1,158 @@
-# Astro Starter Kit: Minimal
+# News Management System
+
+This is a News Management System built with Astro.js. It allows users to manage news articles with full CRUD (Create, Read, Update, Delete) functionality. The system integrates with Supabase for backend services and uses pnpm for package management.
+
+## Features
+
+- Create, read, update, and delete news articles
+- User authentication and management
+- Search and filter articles
+- Responsive design
+- Role-based access control
+- Media management
+- Article scheduling
+- Article analytics
+- Comments section
+
+## Prerequisites
+
+Before you begin, ensure you have met the following requirements:
+
+- [Node.js](https://nodejs.org/en/) (version 16 or later)
+- [pnpm](https://pnpm.io/installation)
+- [Supabase](https://supabase.io/) account and project setup
+
+## Getting Started
+
+### 1. Clone the Repository
 
 ```sh
-pnpm create astro@latest -- --template minimal
+git clone https://github.com/your-username/news-management-system.git
+cd news-management-system
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+### 2. Install Dependencies
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```sh
+pnpm install
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+### 3. Set Up Supabase
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+1. **Create a new project** in [Supabase](https://app.supabase.io/).
 
-Any static assets, like images, can be placed in the `public/` directory.
+2. **Set up the database schema** by executing the following SQL scripts in the Supabase SQL Editor:
 
-## 🧞 Commands
+    ```sql
+    -- Table for news articles
+    CREATE TABLE news (
+        id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
+        title text NOT NULL,
+        description text,
+        date_published timestamp with time zone DEFAULT now(),
+        body text,
+        images text[]
+    );
 
-All commands are run from the root of the project, from a terminal:
+    -- Table for users
+    CREATE TABLE users (
+        id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
+        email text NOT NULL,
+        role text NOT NULL DEFAULT 'viewer'
+    );
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm run dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm run build`           | Build your production site to `./dist/`          |
-| `pnpm run preview`         | Preview your build locally, before deploying     |
-| `pnpm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm run astro -- --help` | Get help using the Astro CLI                     |
+    -- Table for comments
+    CREATE TABLE comments (
+        id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
+        article_id uuid REFERENCES news(id),
+        user_id uuid REFERENCES users(id),
+        comment text NOT NULL,
+        date_posted timestamp with time zone DEFAULT now()
+    );
 
-## 👀 Want to learn more?
+    -- Table for user roles and permissions
+    CREATE TABLE roles (
+        id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
+        role_name text NOT NULL,
+        permissions text[]
+    );
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+    -- Additional tables and relationships as needed
+    ```
+
+3. **Create API keys** and get your Supabase project URL and anon key from the Supabase dashboard.
+
+### 4. Configure Environment Variables
+
+Create a `.env` file in the root directory of the project and add your Supabase project URL and anon key:
+
+```sh
+VITE_SUPABASE_URL=https://your-supabase-project-url.supabase.co
+VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
+```
+
+### 5. Run the Application
+
+```sh
+pnpm dev
+```
+
+This will start the development server at `http://localhost:3000`.
+
+### 6. Deploy the Application
+
+To deploy the application, follow the deployment instructions for your hosting provider. For example, to deploy on [Netlify](https://www.netlify.com/):
+
+1. Create a new site on Netlify and connect it to your GitHub repository.
+2. Set up the environment variables in the Netlify dashboard (same as in the `.env` file).
+3. Deploy the site.
+
+## Folder Structure
+
+```
+src/
+  components/
+    BaseHead.astro
+    Footer.astro
+    Header.astro
+    HeaderLink.astro
+    CreateButton.astro
+    DeleteButton.tsx
+    UpdateButton.tsx
+  content/
+    blog/
+      first-post.md
+      markdown-style-guide.md
+      second-post.md
+      third-post.md
+      using-mdx.mdx
+    config.ts
+  layouts/
+    BlogPost.astro
+  pages/
+    blog/
+      [slug].astro
+      index.astro
+    about.astro
+    index.astro
+    rss.xml.js
+  styles/
+    global.css
+    consts.ts
+    env.d.ts
+  .gitignore
+  astro.config.mjs
+  package.json
+  pnpm-lock.yaml
+  README.md
+  tsconfig.json
+```
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request for any improvements or new features.
+
+## License
+
+This project is licensed under the MIT License.
+
