@@ -27,14 +27,14 @@ Before you begin, ensure you have met the following requirements:
 ### 1. Clone the Repository
 
 ```sh
-git clone https://github.com/your-username/news-management-system.git
-cd news-management-system
+[git clone https://github.com/your-username/news-management-system.git](https://github.com/noonsen/astro-news-crud.git)
+cd astro-news-crud
 ```
 
 ### 2. Install Dependencies
 
 ```sh
-pnpm install
+pnpm install or npm install
 ```
 
 ### 3. Set Up Supabase
@@ -87,14 +87,14 @@ pnpm install
 Create a `.env` file in the root directory of the project and add your Supabase project URL and anon key:
 
 ```sh
-VITE_SUPABASE_URL=https://your-supabase-project-url.supabase.co
-VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
+PUBLIC_SUPABASE_URL=https://your-supabase-project-url.supabase.co
+PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
 ```
 
 ### 5. Run the Application
 
 ```sh
-pnpm dev
+pnpm or npm dev
 ```
 
 This will start the development server at `http://localhost:3000`.
