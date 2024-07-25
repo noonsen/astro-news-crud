@@ -1,4 +1,3 @@
-Sure, I'll guide you through the steps to create documentation for your API and improve the API system for better integration with Supabase. This will include setting up your API, fetching data from Supabase, and ensuring that CORS issues are handled properly.
 
 ### Documentation for the API
 
